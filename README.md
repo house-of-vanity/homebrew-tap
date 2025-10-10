@@ -15,8 +15,8 @@ brew install rexec
 ## Available Formulas
 
 - **rexec** - Remote execution tool
-- **tmux-helper** - Tmux session management helper
-- **khm** - Keyboard and mouse sharing tool
+- **tmux-helper** - Tmux status helper
+- **khm** - SSH known hosts manager
 
 ## Direct installation
 

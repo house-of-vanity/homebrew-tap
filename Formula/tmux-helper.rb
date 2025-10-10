@@ -1,8 +1,8 @@
 class TmuxHelper < Formula
-  desc "Tmux session management helper"
+  desc "Tmux status helper"
   homepage "https://github.com/house-of-vanity/tmux-helper"
   version "0.5.1"
-  license "MIT"
+  license "WTFPL"
 
   on_macos do
     if Hardware::CPU.arm?

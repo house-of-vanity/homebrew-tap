@@ -1,8 +1,8 @@
 class Khm < Formula
-  desc "Keyboard and mouse sharing tool"
+  desc "SSH known hosts manager"
   homepage "https://github.com/house-of-vanity/khm"
   version "0.7.1"
-  license "MIT"
+  license "WTFPL"
 
   on_macos do
     if Hardware::CPU.arm?
@@ -37,7 +37,7 @@ class Khm < Formula
 
   def caveats
     <<~EOS
-      khm is a keyboard and mouse sharing tool.
+      SSH known hosts manager
       
       Note: There's also a desktop version (khm-desktop) available 
       with GUI, but it's not included in this formula.
