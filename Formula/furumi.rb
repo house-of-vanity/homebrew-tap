@@ -15,7 +15,7 @@ class Furumi < Formula
   end
 
   def install
-    bin.install "furumi-macos-aarch64/furumi" => "furumi"
+    bin.install "furumi"
   end
 
   test do
