@@ -17,9 +17,11 @@ brew install rexec
 - **rexec** - Remote execution tool
 - **tmux-helper** - Tmux status helper
 - **khm** - SSH known hosts manager
+- **furumi** - Federated P2P player for personal music libraries (Apple Silicon)
 
 ## Direct installation
 
 ```bash
 brew install house-of-vanity/tap/rexec
+brew install house-of-vanity/tap/furumi
 ```
