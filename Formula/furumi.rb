@@ -1,14 +1,14 @@
 class Furumi < Formula
   desc "Federated P2P player for personal music libraries"
   homepage "https://github.com/house-of-vanity/furumi_tui"
-  version "0.1.6"
+  version "0.1.8"
   license "WTFPL"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/house-of-vanity/furumi_tui/releases/download/v0.1.6/furumi-macos-aarch64-0.1.6.tar.gz"
+      url "https://github.com/house-of-vanity/furumi_tui/releases/download/v0.1.6/furumi-macos-aarch64-0.1.8.tar.gz"
       # Replace after publishing the corrected v0.1.6 release asset.
-      sha256 "6f2fe7de2fecc087bebfe6d594bff90d79f815e9fde018126e33c22f0a55f4da"
+      sha256 "f8be8cd1aea57ac6e4043397d6cff1a9030df10af7d84f9570d6763b244428f5"
     else
       odie "Intel macOS is not supported. Only ARM64 (Apple Silicon) is available."
     end
