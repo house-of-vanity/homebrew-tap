@@ -6,7 +6,7 @@ class Furumi < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/house-of-vanity/furumi_tui/releases/download/v0.1.6/furumi-macos-aarch64-0.1.8.tar.gz"
+      url "https://github.com/house-of-vanity/furumi_tui/releases/download/latest/furumi-macos-aarch64-0.1.8.tar.gz"
       # Replace after publishing the corrected v0.1.6 release asset.
       sha256 "f8be8cd1aea57ac6e4043397d6cff1a9030df10af7d84f9570d6763b244428f5"
     else
