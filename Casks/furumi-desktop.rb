@@ -1,6 +1,6 @@
 cask "furumi-desktop" do
-  version "0.1.1"
-  sha256 "e3eadd7ef1cac664d57d3ca476654f36726f51b26f80bcbb290053ee0523d676"
+  version "0.1.2"
+  sha256 "3e48d5b5d6d221ef61f667ebaae06ae77e6e7d85109e2f87244eac4b37c2b30c"
 
   url "https://github.com/Furumi-stack/furumi-desktop/releases/download/v#{version}/furumi-desktop-macos-aarch64-#{version}.tar.gz"
   name "Furumi Desktop"
