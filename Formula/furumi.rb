@@ -1,6 +1,6 @@
 class Furumi < Formula
-  VERSION = "0.2.6"
-  SHA256 = "e0b36a7916b898372e89bae2bef6f0b6a2b0633857f665ec11865fc926314614"
+  VERSION = "0.2.7"
+  SHA256 = "59ef59f84bc8a8b4e0d59049a041464b70bc8a036e0c34e9e5321ea078f92dbd"
 
   desc "Federated P2P player for personal music libraries"
   homepage "https://github.com/house-of-vanity/furumi_tui"
@@ -9,7 +9,7 @@ class Furumi < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/house-of-vanity/furumi_tui/releases/download/v#{VERSION}/furumi-macos-aarch64-#{VERSION}.tar.gz"
+      url "https://github.com/Furumi-stack/furumi-tui/releases/download/v#{VERSION}/furumi-macos-aarch64-#{VERSION}.tar.gz"
       sha256 SHA256
     else
       odie "Intel macOS is not supported. Only ARM64 (Apple Silicon) is available."
