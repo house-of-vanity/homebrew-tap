@@ -24,7 +24,10 @@ else
 fi
 
 # The cask installs the app bundle, which older releases do not have.
-if ! tar tzf "$tmp/$asset" | grep -q 'Tsunagi.app/'; then
+# Read the listing whole: `grep -q` quits at the first match, and `tar` dying of
+# the closed pipe would fail this check under pipefail.
+listing="$(tar tzf "$tmp/$asset")"
+if ! grep -q 'Tsunagi.app/' <<<"$listing"; then
     echo "note: $asset has no Tsunagi.app; the cask will not install from it" >&2
 fi
 
