@@ -14,17 +14,17 @@ cask "tsunagi-gui" do
 
   app "tsunagi-macos-aarch64/Tsunagi.app"
 
-  postflight do
+  postflight_steps do
     # Not notarised, so a download carries a quarantine flag that would stop it.
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Tsunagi.app"]
+    run "/usr/bin/xattr",
+        args: ["-dr", "com.apple.quarantine", "{{appdir}}/Tsunagi.app"]
 
     # The agent runs as a root daemon, which asks for the password once. Left
     # to the caveat below if it does not take.
-    system_command HOMEBREW_BREW_FILE,
-                   args:         ["services", "start", "tsunagi"],
-                   sudo:         true,
-                   must_succeed: false
+    run HOMEBREW_BREW_FILE,
+        args:         ["services", "start", "tsunagi"],
+        sudo:         true,
+        must_succeed: false
   end
 
   uninstall quit: "cy.hexor.tsunagi.tray"
