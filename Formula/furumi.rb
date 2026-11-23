@@ -1,6 +1,6 @@
 class Furumi < Formula
-  VERSION = "0.5.0"
-  SHA256 = "0f7932bfa9f5759889a5b118ee66e546815fe3cc5ac8116cb12325e32b977494"
+  VERSION = "0.5.2"
+  SHA256 = "46945e63ebe06790d12240e9b191e3682710ccad65464c7b8452869bfa784566"
 
   desc "Federated P2P player for personal music libraries"
   homepage "https://github.com/house-of-vanity/furumi_tui"
