@@ -1,0 +1,73 @@
+name: Update Furumi formula
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published Furumi TUI tag (vMAJOR.MINOR.PATCH)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: furumi-formula
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_REPO: Furumi-stack/furumi-tui
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify release archive and update formula
+        id: formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Expected a stable release tag, got: $RELEASE_TAG" >&2
+            exit 1
+          fi
+          archive="furumi-macos-aarch64-${RELEASE_TAG#v}.tar.gz"
+          stable=$(gh release view "$RELEASE_TAG" --repo "$RELEASE_REPO" \
+            --json isDraft,isPrerelease --jq '(.isDraft or .isPrerelease) | not')
+          [[ "$stable" == true ]]
+          download_dir=$(mktemp -d)
+          gh release download "$RELEASE_TAG" --repo "$RELEASE_REPO" \
+            --pattern "$archive" --pattern SHA256SUMS --dir "$download_dir"
+          python3 scripts/update-furumi.py "$RELEASE_TAG" "$download_dir" Formula/furumi.rb
+          if git diff --quiet -- Formula/furumi.rb; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install and test the updated formula
+        if: steps.formula.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          tap=house-of-vanity/tap
+          ruby -c Formula/furumi.rb
+          brew tap "$tap" "$GITHUB_WORKSPACE"
+          cp Formula/furumi.rb "$(brew --repository "$tap")/Formula/furumi.rb"
+          brew install --formula "$tap/furumi"
+          brew test "$tap/furumi"
+
+      - name: Commit and push the formula
+        if: steps.formula.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- Formula/furumi.rb
+          git commit -m "furumi ${RELEASE_TAG#v}"
+          git push origin HEAD:main
