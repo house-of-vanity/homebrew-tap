@@ -1,6 +1,6 @@
 cask "tsunagi-gui" do
-  version "1.0.0"
-  sha256 "fd115ee1a47f1263c9ab772cd7466fa13ff2f7ec4978c5b25708f7a05f7a12f7"
+  version "1.0.2"
+  sha256 "513aaa73b6b3d3dc9c71c4005eb8737b1409b91150ca25bcd4ce6bd857cefebf"
 
   url "https://github.com/house-of-vanity/tsunagi/releases/download/v#{version}/tsunagi-macos-aarch64-#{version}.tar.gz"
   name "Tsunagi"
