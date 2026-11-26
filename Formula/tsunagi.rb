@@ -1,6 +1,6 @@
 class Tsunagi < Formula
-  VERSION = "1.0.9"
-  SHA256 = "40f2cae378ab09b5252be85a2ddff5dbe98826f0c332f1afa52fe0ecd2317208"
+  VERSION = "1.0.10"
+  SHA256 = "1644b61326cdcbbbca2406288a66e20ea04cf7f53e74154d2f4be1293ee67dae"
 
   desc "Peer-to-peer mesh network with no server (command line agent)"
   homepage "https://github.com/house-of-vanity/tsunagi"
